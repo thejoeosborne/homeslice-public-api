@@ -9,7 +9,8 @@ export class AppController {
 
   @ApiOperation({
     summary: 'Get live interest rates for a given state.',
-    description: 'Get live interest rates for a given state.',
+    description:
+      'Get live interest rates for a given state. Pass in a query param with a 2 letter state code.',
   })
   @ApiQuery({
     name: 'state',
