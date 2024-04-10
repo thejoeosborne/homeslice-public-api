@@ -1,12 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { SWAGGER_DESCRIPTION } from './swagger-description';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .setTitle('Home Slice Public API')
-    .setDescription('A collection of public endpoints to get real estate data.')
+    .setDescription(SWAGGER_DESCRIPTION)
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);

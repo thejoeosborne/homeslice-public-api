@@ -1,11 +1,12 @@
 import { Controller, Get, Query } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { AppService } from './app.service';
+import { LowercasePipe } from 'src/pipes/lowercase.pipe';
 
-@ApiTags('HomeSlice Public API')
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+@ApiTags('Interest Rates')
+@Controller('rates')
+export class RatesController {
+  constructor(private readonly configService: ConfigService) {}
 
   @ApiOperation({
     summary: 'Get live interest rates for a given state.',
@@ -19,8 +20,9 @@ export class AppController {
     type: String,
     description: 'The 2 letter state code to get rates for',
   })
-  @Get('rates')
-  getHello(@Query('state') state: string): string {
-    return this.appService.getHello();
+  @Get()
+  async getRates(@Query('state', LowercasePipe) state: string) {
+    const endpoint = `${this.configService.get('SINGLE_RATE_ENDPOINT')}?state=${state}`;
+    return await fetch(endpoint).then((res) => res.json());
   }
 }
