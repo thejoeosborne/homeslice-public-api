@@ -1,4 +1,7 @@
 <h2>Welcome to the Home Slice Public API!</h2>
+
+<h3>Test endpoints and view docs here: <a href="https://homeslice-public-api.vercel.app/docs" target="_blank">https://homeslice-public-api.vercel.app/docs</a></h3>
+
 <h4>My name is Joe, I like to collect real estate data. I built a web app called <a href="https://homesliceapp.ai" target="_blank">Home Slice</a> to track the market in Utah.</h4>
 <h4>I also collect live interest rates for every state, and wanted to share some free, easy to use endpoints to access that data.</h4>
 <h4>I was also curious about deploying a NestJS app + Swagger with Vercel. Turns out it works super well!</h4>
