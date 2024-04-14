@@ -1,13 +1,24 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, HttpException, Query } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
+import {
+  ApiOkResponse,
+  ApiOperation,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 import { LowercasePipe } from 'src/pipes/lowercase.pipe';
+import { GetRateResponseDto } from './dto/get-rate-response.dto';
 
 @ApiTags('Interest Rates')
 @Controller('rates')
 export class RatesController {
   constructor(private readonly configService: ConfigService) {}
 
+  @ApiOkResponse({
+    description: 'The data structure that this endpoint returns.',
+    type: GetRateResponseDto,
+    isArray: true,
+  })
   @ApiOperation({
     summary: 'Get live interest rates for a given state.',
     description:
@@ -22,7 +33,11 @@ export class RatesController {
   })
   @Get()
   async getRates(@Query('state', LowercasePipe) state: string) {
-    const endpoint = `${this.configService.get('SINGLE_RATE_ENDPOINT')}?state=${state}`;
-    return await fetch(endpoint).then((res) => res.json());
+    try {
+      const endpoint = `${this.configService.get('SINGLE_RATE_ENDPOINT')}?state=${state}`;
+      return await fetch(endpoint).then((res) => res.json());
+    } catch (error) {
+      throw new HttpException(error.message, error.status || 500);
+    }
   }
 }
