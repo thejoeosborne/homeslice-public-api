@@ -17,7 +17,6 @@ export class RatesController {
   @ApiOkResponse({
     description: 'The data structure that this endpoint returns.',
     type: GetRateResponseDto,
-    isArray: true,
   })
   @ApiOperation({
     summary: 'Get live interest rates for a given state.',
@@ -35,7 +34,8 @@ export class RatesController {
   async getRates(@Query('state', LowercasePipe) state: string) {
     try {
       const endpoint = `${this.configService.get('SINGLE_RATE_ENDPOINT')}?state=${state}`;
-      return await fetch(endpoint).then((res) => res.json());
+      const data = await fetch(endpoint).then((res) => res.json());
+      return new GetRateResponseDto({ results: data });
     } catch (error) {
       throw new HttpException(error.message, error.status || 500);
     }

@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { LoanTerm } from '../enum/loan-term.enum';
 
-export class GetRateResponseDto {
+export class GetRateResults {
   @ApiProperty({
     description: 'The interest rate',
     example: 6.216,
@@ -24,4 +24,16 @@ export class GetRateResponseDto {
     type: Boolean,
   })
   decrease: boolean;
+}
+
+export class GetRateResponseDto {
+  @ApiProperty({
+    description: 'The results of the rate check',
+    type: [GetRateResults],
+  })
+  results: GetRateResults[];
+
+  constructor(args: GetRateResponseDto) {
+    Object.assign(this, args);
+  }
 }
