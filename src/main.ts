@@ -6,7 +6,7 @@ import { SWAGGER_DESCRIPTION } from './swagger-description';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
-    .setTitle('Home Slice Public API')
+    .setTitle('*Deprecated* - Go to https://hapi.so for active API')
     .setDescription(SWAGGER_DESCRIPTION)
     .setVersion('1.0')
     .build();

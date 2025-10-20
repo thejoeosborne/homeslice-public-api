@@ -1,3 +1,11 @@
+<h2>As of 2025 this API has been deprecated in favor of a new API:</h2>
+<a href="https://hapi.so/?utm_source=homeslice-public-api" target="_blank" style="font-size: 36px; text-decoration: none;"><h1>h.api</h1></a>
+<h3>h.api is an extremely easy to use API to query real-time interest rates and mortgage calculations.</h3>
+<h4>Visit <a href="https://hapi.so/?utm_source=homeslice-public-api" target="_blank">hapi.so</a> to get started.</h4>
+<br>
+<br>
+<br>
+
 <h2>Welcome to the Home Slice Public API!</h2>
 
 <h3>Test endpoints and view docs here: <a href="https://homeslice-public-api.vercel.app/docs" target="_blank">https://homeslice-public-api.vercel.app/docs</a></h3>
